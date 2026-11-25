@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khassoum Savane Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE work: a technical portfolio an engineering hiring team reads in two minutes
+   IDEA an engineering drawing sheet: white sheet, black linework, a title block, orange instrument lines
+   PICTURE the FESCO control system schematic drawn large: HMI, PLC, transmitter, 11-valve manifold, HPU
+   COLOUR paper white, ink black, safety orange #e8710a for signals, pale grid; night: graphite sheet
+   TYPE IBM Plex Sans Condensed for titles and tags, IBM Plex Sans for text
+   LAYOUT laptop: title block row over the full-width schematic; phone: title, schematic, facts stacked */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#15181b);--ink:light-dark(#111418,#eef0f2);--mute:light-dark(#555b62,#a9b0b7);--line:light-dark(#111418,#d9dde1);--grid:light-dark(#eef1f4,#1d2125);--acc:#e8710a;--accink:light-dark(#b5520a,#ff9a45);--panel:light-dark(#f6f7f8,#1b1f23);--rule:light-dark(#d4d8dc,#2f353b)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:clip}
+a{color:var(--accink)}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(28px,4vw,64px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(38px,6vw,64px)}
+h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:18px}
+h3{font-size:21px;margin-bottom:6px}
+p{margin:0 0 12px;max-width:68ch}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;padding:10px max(5vw,16px)}
+nav b{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:18px;margin-right:auto}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;padding:8px 0;min-height:44px;display:inline-flex;align-items:center}
+nav a:hover,nav a:focus-visible{color:var(--accink)}
+.sheet{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.tb{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);border:2px solid var(--line);background:var(--bg)}
+.tb>div{padding:18px 20px}
+.tb .who{border-right:2px solid var(--line)}
+.lede{font-size:18px;margin-top:14px}
+.cells{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0!important}
+.cells div{padding:12px 16px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+.cells div:nth-child(2n){border-right:0}
+.cells small{display:block;color:var(--mute);font-size:13px}
+.cells strong{font-size:16px}
+.cells .wide{grid-column:1/-1;border-bottom:0;border-right:0}
+.drawing{border:2px solid var(--line);border-top:0;background:var(--bg)}
+.fig{position:relative;min-height:420px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.cap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;border-top:1px solid var(--rule);padding:10px 20px;font-size:14px;color:var(--mute)}
+svg text{font-family:"IBM Plex Sans",sans-serif;paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.tag{display:inline-block;font:600 13px/1 "IBM Plex Sans Condensed",sans-serif;padding:5px 8px;border:1.5px solid currentColor;margin-bottom:10px}
+.tag.real{color:var(--accink)}
+.tag.concept{color:var(--mute)}
+.two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));border-top:2px solid var(--line);border-left:1px solid var(--rule);margin:8px 0 22px}
+.specs div{padding:12px 14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.specs b{display:block;font:700 clamp(24px,3vw,32px)/1.1 "IBM Plex Sans Condensed",sans-serif;white-space:nowrap}
+.specs span{font-size:14px;color:var(--mute)}
+ul.ticks{list-style:none;padding:0;margin:0 0 12px}
+ul.ticks li{padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--rule)}
+ul.ticks li::before{content:"";position:absolute;left:2px;top:15px;width:9px;height:9px;border:2px solid var(--acc)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 14px "IBM Plex Sans Condensed",sans-serif;border-bottom:2px solid var(--line)}
+td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.note{font-size:14px;color:var(--mute)}
+.alt{background:var(--panel);border-block:1px solid var(--rule)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:16px 0 20px;counter-reset:s}
+.flow div{border:2px solid var(--line);margin-right:-2px;padding:14px;background:var(--bg);position:relative}
+.flow div:last-child{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--bg))}
+.flow b{display:block;font-family:"IBM Plex Sans Condensed",sans-serif;font-size:17px;line-height:1.2}
+.flow span{font-size:14px;color:var(--mute)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{border:2px solid var(--line);padding:20px;background:var(--bg)}
+.tl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 24px}
+.tl dt{font-weight:600;white-space:nowrap;padding:14px 0;border-top:1px solid var(--rule);font-variant-numeric:tabular-nums;color:var(--accink)}
+.tl dd{margin:0;padding:14px 0;border-top:1px solid var(--rule)}
+.tl dd b{display:block;font-size:17px}
+.tl dd span{color:var(--mute);font-size:15px}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.skills div{border-top:2px solid var(--line);padding-top:10px}
+.skills h3{font-size:18px}
+.skills p{font-size:15px}
+.contact{background:var(--ink);color:var(--bg)}
+.contact a{color:var(--bg);font-weight:600}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px 40px;font-size:18px;margin-top:14px}
+.contact small{display:block;font-size:13px;opacity:.75}
+.contact .bar{height:6px;background:var(--acc);margin-bottom:22px;max-width:120px}
+footer{font-size:13px;color:var(--mute);padding:16px max(5vw,16px)}
+@media(max-width:860px){.two,.tb{grid-template-columns:minmax(0,1fr)}.tb .who{border-right:0;border-bottom:2px solid var(--line)}.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){nav .wrap{flex-wrap:nowrap;overflow-x:auto;gap:18px}nav b{flex:none;margin-right:8px}nav a{flex:none}.cards,.skills,.flow{grid-template-columns:minmax(0,1fr)}.flow div{margin-right:0;margin-bottom:-2px}.tl{grid-template-columns:minmax(0,1fr)}.tl dt{padding-bottom:0}.tl dd{border-top:0;padding-top:4px}.fig{min-height:540px}table{font-size:13px}th,td{padding:6px 4px}}
+@media(prefers-reduced-motion:no-preference){.sig{stroke-dasharray:6 6;animation:flow 1.6s linear infinite}@keyframes flow{to{stroke-dashoffset:-24}}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Khassoum Savane</b><a href="#project">Project</a><a href="#hands-on">Hands-on work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
+
+<header class="band sheet"><div class="wrap">
+ <div class="tb">
+  <div class="who">
+   <h1>Khassoum Savane</h1>
+   <p class="lede">Electronics and production engineer. I build, test, calibrate and repair electrical and electromechanical equipment, write the procedures that make it repeatable, and take designs from drawing set to a system that runs.</p>
+  </div>
+  <div class="cells">
+   <div><small>Degree</small><strong>B.S. Electronic &amp; Computer Engineering Technology</strong></div>
+   <div><small>School</small><strong>Sam Houston State University, ABET-ETAC accredited, May 2026</strong></div>
+   <div><small>Experience</small><strong>5+ years professional</strong></div>
+   <div><small>Languages</small><strong>English, French</strong></div>
+   <div class="wide"><small>Focus</small><strong>Test and verification, rework, CAD documentation, commissioning, industrial controls</strong></div>
+  </div>
+ </div>
+ <div class="drawing">
+  <div class="fig"><svg id="sch" role="img" aria-label="Simplified schematic of the automated hydraulic choke manifold control system: HMI and PLC on Ethernet, PLC driving 11 solenoid valves on the manifold, a pressure transmitter returning a 4 to 20 mA signal, and a hydraulic power unit supplying the manifold."></svg></div>
+  <div class="cap"><span>Fig. 1 Automated hydraulic choke manifold control system, simplified</span><span>Senior design project for FESCO, 2026</span></div>
+ </div>
+</div></header>
+
+<section id="project" class="band"><div class="wrap two">
+ <div>
+  <span class="tag real">Real project, built and commissioned</span>
+  <h2>Automated hydraulic choke manifold for FESCO</h2>
+  <p>FESCO needed manual choke-manifold valves brought under automatic pressure control. As Systems Engineer on a three-person senior design team, I owned the P&amp;ID and the PLC architecture, and served as the team's main contact with FESCO, presenting our formal design reviews.</p>
+  <div class="specs">
+   <div><b>15,000 psi</b><span>system pressure rating</span></div>
+   <div><b>11</b><span>actuated valves</span></div>
+   <div><b>16</b><span>tagged I/O points</span></div>
+   <div><b>15 lines</b><span>bill of materials</span></div>
+   <div><b>~$18K</b><span>estimated hardware cost</span></div>
+  </div>
+  <h3>What I delivered</h3>
+  <ul class="ticks">
+   <li>P&amp;ID and PLC architecture on Allen-Bradley ControlLogix with Studio 5000, using 4–20 mA instrumentation</li>
+   <li>The full AutoCAD drawing set for the system</li>
+   <li>Python I/O verification tooling that checks every tagged point against the design</li>
+   <li>A SolidWorks 3D model of the outdoor HMI stand, with wind-load simulation across weather conditions</li>
+   <li>The bill of materials, with specifications, quantities, selection notes and vendor sourcing for each line</li>
+  </ul>
+ </div>
+ <div>
+  <h3>Bill of materials, by assembly</h3>
+  <div class="scroll"><table>
+   <thead><tr><th>Assembly</th><th>Main items</th></tr></thead>
+   <tbody>
+    <tr><td>Hydraulic supply</td><td>Hydraulic power unit (HPU)</td></tr>
+    <tr><td>Manifolds</td><td>D03 manifolds, 4- and 3-station, 11 valve slots</td></tr>
+    <tr><td>Valves</td><td>11 solenoid valves and 11 pilot-operated check valves</td></tr>
+    <tr><td>Control</td><td>PLC with rack, power supply, analog and digital I/O modules</td></tr>
+    <tr><td>Operator interface</td><td>Touchscreen HMI with enclosure box</td></tr>
+    <tr><td>Network</td><td>Industrial Ethernet switch</td></tr>
+   </tbody>
+  </table></div>
+  <p class="note">15 line items in total, about $18K estimated.</p>
+  <h3 style="margin-top:22px">After the presentation: commissioning</h3>
+  <p>FESCO brought me back for about two months in summer 2026 to oversee delivery of the materials and the first construction phase. I brought the hydraulic power unit and actuators into operation, confirmed the system ran and pumped normally, and handed it over to FESCO's engineers.</p>
+ </div>
+</div></section>
+
+<section id="hands-on" class="band alt"><div class="wrap">
+ <h2>Hands-on work on the floor</h2>
+ <div class="two">
+  <div>
+   <h3>A test procedure that works as a quality gate</h3>
+   <p>At Heights Motors in Houston (Operations &amp; Technical Systems Specialist, since August 2023) I developed and run a standardised pre-sale electrical test. Every vehicle passes the same checks, in the same order, with a recorded result, before it is released.</p>
+   <div class="flow">
+    <div><b>OBD-II diagnostics</b><span>stored and pending faults</span></div>
+    <div><b>Module scan</b><span>every control module checked</span></div>
+    <div><b>Charging system</b><span>verification of battery and charging</span></div>
+    <div><b>Release</b><span>only on a full pass</span></div>
+   </div>
+  </div>
+  <div>
+   <ul class="ticks">
+    <li>Maintain and calibrate wheel-alignment systems, hydraulic lifts, EV chargers and OBD-II tools</li>
+    <li>Fault-find with oscilloscopes, scanners and wiring diagrams, including CAN-bus analysis</li>
+    <li>5+ pre-acquisition and pre-sale technical inspections every week</li>
+    <li>15% service-efficiency gain from tracking dispatching and throughput</li>
+    <li>Lockout/tagout and battery and high-voltage isolation before servicing components</li>
+    <li>Component-level electronics repair and PCB diagnostics, verified by functional test</li>
+   </ul>
+  </div>
+ </div>
+ <h3 style="margin-top:28px">Other design exercises</h3>
+ <div class="cards" style="margin-top:12px">
+  <div class="card"><span class="tag concept">Conceptual design</span><h3>Clean-in-place (CIP) skid</h3><p>Self-directed conceptual design of a CIP skid, done for practice and to build my documentation skills.</p></div>
+  <div class="card"><span class="tag concept">Practice exercise</span><h3>Retrofit walkdown</h3><p>Self-directed retrofit and walkdown exercise, done to practise surveying existing equipment and documenting what a retrofit would change.</p></div>
+ </div>
+</div></section>
+
+<section id="experience" class="band"><div class="wrap">
+ <h2>Experience</h2>
+ <dl class="tl">
+  <dt>2023 – now</dt><dd><b>Operations &amp; Technical Systems Specialist, Heights Motors</b><span>Equipment calibration, electrical diagnostics, test procedures, directing 1–3 mechanics, primary contact for OEM support and vendors</span></dd>
+  <dt>2026</dt><dd><b>Engineering Intern, commissioning, FESCO</b><span>Delivery oversight and first-phase start-up of the hydraulic control system</span></dd>
+  <dt>2023 – now</dt><dd><b>Electronics Repair Technician, self-employed</b><span>Component-level repair and PCB diagnostics</span></dd>
+  <dt>2021 – 2023</dt><dd><b>Staffing Coordinator, Cedars Valet</b><span>Staffing for about 60 people across 10 sites, weekly payroll data, training new staff</span></dd>
+  <dt>2021</dt><dd><b>Engineering Intern, ONEP (Office National de l'Eau Potable), Côte d'Ivoire</b><span>Hydraulic calculations for pipe sizing, flow, pressure and pumping capacity, and site inspections with senior engineers</span></dd>
+  <dt>2019 – 2020</dt><dd><b>Electronics Repair Technician, uBreakiFix, Washington, DC</b><span>Device diagnostics, component replacement and post-repair testing</span></dd>
+ </dl>
+</div></section>
+
+<section id="skills" class="band alt"><div class="wrap">
+ <h2>Skills and tools</h2>
+ <div class="skills">
+  <div><h3>CAD and documentation</h3><p>SolidWorks (modelling and simulation), AutoCAD (schematics, wiring diagrams, P&amp;IDs), Bluebeam Revu, bills of materials, test procedures</p></div>
+  <div><h3>Test and electronics</h3><p>Oscilloscopes, multimeters, diagnostic scanners, component-level rework, PCB diagnostics, CAN-bus and OBD-II, NI Multisim, LabVIEW</p></div>
+  <div><h3>Automation</h3><p>Allen-Bradley ControlLogix, Studio 5000, ladder logic, 4–20 mA instrumentation, EtherNet/IP, Modbus; FactoryTalk View SE and FANUC robots in coursework</p></div>
+  <div><h3>Software and data</h3><p>Python test automation, MATLAB/Simulink, C++, C#, Power BI, Excel</p></div>
+  <div><h3>Safety and quality</h3><p>Lockout/tagout, high-voltage isolation, OH&amp;S practice, standardised quality-gate testing</p></div>
+  <div><h3>Education</h3><p>B.S. Electronic and Computer Engineering Technology, Sam Houston State University, May 2026. Completed while working full-time night shifts.</p></div>
+ </div>
+</div></section>
+
+<section id="contact" class="band contact"><div class="wrap">
+ <div class="bar"></div>
+ <h2>Contact</h2>
+ <p>Open to relocation. Happy to walk through any of this work in detail.</p>
+ <div class="row">
+  <div><small>Email</small><a href="mailto:ksavan21@outlook.com">ksavan21@outlook.com</a></div>
+  <div><small>Phone</small>(832) 340-6356</div>
+  <div><small>LinkedIn</small><a href="https://www.linkedin.com/in/khassoum-savane">linkedin.com/in/khassoum-savane</a></div>
+ </div>
+</div></section>
+<footer>Khassoum Savane, engineering portfolio. Updated November 2026.</footer>
+
+<script>
+{
+const s=document.getElementById('sch');
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const box=(x,y,w,h,t,sub,acc)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="var(--bg)" stroke="${acc?'var(--acc)':'var(--line)'}" stroke-width="2"/><text x="${x+12}" y="${y+26}" font-size="16" font-weight="700" fill="var(--ink)">${esc(t)}</text><text x="${x+12}" y="${y+46}" font-size="13" fill="var(--mute)">${esc(sub)}</text>`;
+const ln=(pts,cls,col,wd)=>`<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${col}" stroke-width="${wd}" class="${cls}"/>`;
+const lab=(x,y,t,a)=>`<text x="${x}" y="${y}" font-size="13" font-weight="600" fill="var(--accink)" text-anchor="${a||'middle'}">${esc(t)}</text>`;
+const valves=(x,y,w)=>{let o='';const n=11,g=w/n;for(let i=0;i<n;i++){const cx=x+g*i+g/2;o+=`<g><rect x="${cx-9}" y="${y}" width="18" height="18" fill="var(--bg)" stroke="var(--line)" stroke-width="1.5"/><path d="M${cx-9} ${y}L${cx+9} ${y+18}M${cx+9} ${y}L${cx-9} ${y+18}" stroke="var(--line)" stroke-width="1"/></g>`}return o};
+const draw=()=>{
+ const W=s.clientWidth,H=s.clientHeight;let o='';
+ if(W>=600){
+  const bw=Math.min(240,W*.26),bh=64,y1=H*.12,y2=H*.6;
+  const hmi=[W*.04,y1],plc=[W/2-bw/2,y1],pt=[W*.96-bw,y1];
+  const mx=W*.3,mw=W*.66,mh=104,hpu=[W*.04,y2+20],hw=Math.min(200,W*.22);
+  o+=ln([[hmi[0]+bw,y1+32],[plc[0],y1+32]],'','var(--line)',2)+lab((hmi[0]+bw+plc[0])/2,y1+24,'EtherNet/IP');
+  o+=ln([[pt[0],y1+32],[plc[0]+bw,y1+32]],'sig','var(--acc)',2)+lab((pt[0]+plc[0]+bw)/2,y1+24,'4–20 mA');
+  o+=ln([[W/2,y1+bh],[W/2,y2]],'sig','var(--acc)',2)+lab(W/2+10,(y1+bh+y2)/2,'11 solenoid outputs','start');
+  o+=ln([[pt[0]+bw/2,y2],[pt[0]+bw/2,y1+bh]],'','var(--line)',2)+lab(pt[0]+bw/2+10,(y1+bh+y2)/2+18,'pressure sensing','start');
+  o+=ln([[hpu[0]+hw,y2+52],[mx,y2+52]],'','var(--line)',6);
+  o+=box(...hmi,bw,bh,'HMI','touchscreen, outdoor stand')+box(...plc,bw,bh,'PLC','ControlLogix, 16 I/O','acc')+box(...pt,bw,bh,'Pressure transmitter','4–20 mA, up to 15,000 psi');
+  o+=box(hpu[0],hpu[1],hw,bh,'HPU','hydraulic power supply');
+  o+=`<rect x="${mx}" y="${y2}" width="${mw}" height="${mh}" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/><text x="${mx+12}" y="${y2+26}" font-size="16" font-weight="700" fill="var(--ink)">Choke manifold, 11 actuated valves</text>`+valves(mx+8,y2+52,mw-16);
+ }else{
+  const g=W*.05,bw=(W-g*3)/2,bh=64;
+  const plcX=g*2+bw,y1=12,yPt=150,yM=270,mh=110,yH=430;
+  o+=ln([[g+bw,y1+32],[plcX,y1+32]],'','var(--line)',2);
+  o+=ln([[plcX+bw*.75,y1+bh],[plcX+bw*.75,yM]],'sig','var(--acc)',2)+lab(plcX+bw*.75-6,yM-52,'11 outputs','end');
+  o+=ln([[g+bw,yPt+32],[plcX+bw*.3,yPt+32],[plcX+bw*.3,y1+bh]],'sig','var(--acc)',2)+lab(plcX+bw*.3-6,yPt+24,'4–20 mA','end');
+  o+=ln([[g+bw/2,yM],[g+bw/2,yPt+bh]],'','var(--line)',2);
+  o+=ln([[g+bw/2,yH],[g+bw/2,yM+mh]],'','var(--line)',6)+lab(g+bw/2+12,yH-12,'hydraulic supply','start');
+  o+=box(g,y1,bw,bh,'HMI','touchscreen')+box(plcX,y1,bw,bh,'PLC','ControlLogix','acc')+box(g,yPt,bw,bh,'Transmitter','4–20 mA');
+  o+=`<rect x="${g}" y="${yM}" width="${W-g*2}" height="${mh}" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/><text x="${g+12}" y="${yM+26}" font-size="15" font-weight="700" fill="var(--ink)">Manifold, 11 valves</text>`+valves(g+6,yM+60,W-g*2-12);
+  o+=box(g,yH,bw,bh,'HPU','hydraulic unit');
+ }
+ s.innerHTML=o;
+};
+const ro=new ResizeObserver(draw);ro.observe(s);
+}
+</script>
+</body>
+</html>
